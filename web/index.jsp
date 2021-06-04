@@ -82,7 +82,7 @@ and open the template in the editor.
                    try{
                       Statement stmt1=connection.createStatement();
                       ResultSet rset1;
-                      String s1="select * FROM agenda WHERE sala='sala1' AND desde='"+hora+"'";
+                      String s1="select * FROM agenda WHERE sala='sala1' AND '"+hora+"'>=desde AND '"+hora+"'<=hasta";
                       rset1 = stmt1.executeQuery(s1);
                       isala1="";
                       while(rset1.next()){
@@ -92,13 +92,75 @@ and open the template in the editor.
                      } catch (Exception e1) {
                      System.out.println("Sala 1"+e1.getMessage()+isala1);
                       }
+                   
+                   
+                     try{
+                      Statement stmt1=connection.createStatement();
+                      ResultSet rset1;
+                      String s1="select * FROM agenda WHERE sala='sala2' AND '"+hora+"'>=desde AND '"+hora+"'<=hasta";
+                      rset1 = stmt1.executeQuery(s1);
+                      isala2="";
+                      while(rset1.next()){
+                         isala2="X";
+                       }
+                      stmt1.close();
+                     } catch (Exception e1) {
+                     System.out.println("Sala 2"+e1.getMessage()+isala1);
+                      }
+                     
+                     
+                       try{
+                      Statement stmt1=connection.createStatement();
+                      ResultSet rset1;
+                      String s1="select * FROM agenda WHERE sala='sala3' AND '"+hora+"'>=desde AND '"+hora+"'<=hasta";
+                      rset1 = stmt1.executeQuery(s1);
+                      isala3="";
+                      while(rset1.next()){
+                         isala3="X";
+                       }
+                      stmt1.close();
+                     } catch (Exception e1) {
+                     System.out.println("Sala 4"+e1.getMessage()+isala1);
+                      }
+                       
+                         try{
+                      Statement stmt1=connection.createStatement();
+                      ResultSet rset1;
+                      String s1="select * FROM agenda WHERE sala='sala4' AND '"+hora+"'>=desde AND '"+hora+"'<=hasta";
+                      rset1 = stmt1.executeQuery(s1);
+                      isala4="";
+                      while(rset1.next()){
+                         isala4="X";
+                       }
+                      stmt1.close();
+                     } catch (Exception e1) {
+                     System.out.println("Sala 4"+e1.getMessage()+isala1);
+                      }
                     
 
                 out.println("<tr>");
                 out.println("<td>"+hora+"</td>");
-                out.println("<td>"+isala1+"</td>");
-                out.println("<td>"+isala2+"</td>");
-                out.println("<td>"+isala3+"</td>");
+                if (isala1.equals("X")){
+                    out.println("<td style='background-color:#00FF00'>"+isala1+"</td>");
+                }else{
+                    out.println("<td>"+isala1+"</td>");   
+                }
+                 if (isala2.equals("X")){
+                    out.println("<td style='background-color:#FF5733'>"+isala2+"</td>");
+                }else{
+                    out.println("<td>"+isala2+"</td>");   
+                }
+                 if (isala3.equals("X")){
+                    out.println("<td style='background-color:#33BEFF'>"+isala3+"</td>");
+                }else{
+                    out.println("<td>"+isala3+"</td>");   
+                }
+                 
+                  if (isala4.equals("X")){
+                    out.println("<td style='background-color:#F3FF33'>"+isala4+"</td>");
+                }else{
+                    out.println("<td>"+isala4+"</td>");   
+                }
                 out.println("</tr>");
                 }
                 connection.close();
